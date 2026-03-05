@@ -65,37 +65,19 @@ Diagonal moves are **not allowed**.
   |    └─╴📄 astar.py
   |    └─╴📄 bfs.py
   |    └─╴📄 dfs.py
-  |    └─╴📄 maze.py
+  |    └─╴📄 maze.py 
   ├─╴📁 test
-  |    └─╴📄 test
-  
-  
-  
-  astar.py
-  |    └─╴📄 modules.py
-  |    └─╴📄 modules.py
-|   ├─╴📁 Client
-|   |   └─╴📁 application
-|   |       └─╴📁 batch
-|   |           └─╴📄 <modules.py>
-|   ├─╴📁 ext_modules
-|   ├─╴📁 Server
-|   └─╴📄 ...
-└─╴📁 documentation (git)
-    ├─╴📁 cannelle
-    |   ├─╴📁 docs
-    |   ├─╴📁 site
-    |   └─╴📄 mkdocs.yml
-INF-5183/
+  |    └─╴📄 test_astar.py
+  |    └─╴📄 test_bfs.py
+  |    └─╴📄 test_dfs.py
+  |    └─╴📄 test_maze.py
+  └─╴📄 main.py
+  └─╴📄 launch.bat
+  └─╴📄 README.md
+  └─╴📄 requirements.txt
+  └─╴📄 Devoir_I.pdf
+  └─╴📄 .gitignore
 
-maze.py          # Maze generation and grid utilities
-dfs.py           # Depth First Search implementation
-bfs.py           # Breadth First Search implementation
-astar.py         # A* algorithm implementation
-main.py          # Main program entry point
-
-requirements.txt # Project dependencies
-README.md        # Project documentation
 ```
 
 ---
