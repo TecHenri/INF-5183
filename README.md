@@ -58,7 +58,35 @@ Diagonal moves are **not allowed**.
 # Project Structure
 
 ```
-Devoir_I/
+
+
+📁 INF-5183
+  ├─╴📁 src
+  |    └─╴📄 astar.py
+  |    └─╴📄 bfs.py
+  |    └─╴📄 dfs.py
+  |    └─╴📄 maze.py
+  ├─╴📁 test
+  |    └─╴📄 test
+  
+  
+  
+  astar.py
+  |    └─╴📄 modules.py
+  |    └─╴📄 modules.py
+|   ├─╴📁 Client
+|   |   └─╴📁 application
+|   |       └─╴📁 batch
+|   |           └─╴📄 <modules.py>
+|   ├─╴📁 ext_modules
+|   ├─╴📁 Server
+|   └─╴📄 ...
+└─╴📁 documentation (git)
+    ├─╴📁 cannelle
+    |   ├─╴📁 docs
+    |   ├─╴📁 site
+    |   └─╴📄 mkdocs.yml
+INF-5183/
 
 maze.py          # Maze generation and grid utilities
 dfs.py           # Depth First Search implementation
