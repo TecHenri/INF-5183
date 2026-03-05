@@ -195,7 +195,7 @@ Example comparison table:
 Clone the repository:
 
 ```
-git clone https://github.com/yourusername/maze-search-ai.git
+git clone https://github.com/TecHenri/INF-5183.git
 ```
 
 Move into the project directory:
