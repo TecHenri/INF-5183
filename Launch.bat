@@ -27,7 +27,7 @@ python -m pip install -r requirements.txt
 
 REM Lancer le programme principal
 echo Lancement du programme...
-python src\main.py
+python main.py
 
 REM Pause pour voir les résultats
 pause

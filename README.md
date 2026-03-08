@@ -31,7 +31,7 @@ The maze is represented as a **2D grid** where:
 | `S`    | Start position  |
 | `G`    | Goal position   |
 
-Example of maze representation:
+Example of maze representation **8X8**:
 
 ```
 # # # # # # # #
@@ -152,6 +152,15 @@ The maze generator creates a **16 × 16 grid** with the following properties:
 
 ---
 
+# Visualization
+
+Example of the graphical visualization of the maze and the path to from G to S.
+
+- **Green cell**: Start position (S)  
+- **Red cell**: Goal position (G)    
+
+![Maze Example](images/maze_visualization.png)
+
 # Program Output
 
 For each algorithm the program displays:
@@ -211,7 +220,7 @@ git clone https://github.com/TecHenri/INF-5183.git
 Move into the project directory:
 
 ```
-cd maze-search-ai
+cd INF-5183
 ```
 
 Install dependencies (if needed):
