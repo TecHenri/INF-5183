@@ -289,13 +289,14 @@ class Maze:
         goal = self.get_goal()
 
         self.grid[start[0]][start[1]] = "S"
-
+        '''
         # garantir que la case goal est accessible
         if self.grid[goal[0]][goal[1]] == "#":
             self.grid[goal[0]][goal[1]] = "."
 
         if self.grid[goal[0] - 1][goal[1]] == "#":
             self.grid[goal[0] - 1][goal[1]] = "."
+        '''
 
         self.grid[goal[0]][goal[1]] = "G"
 
@@ -371,7 +372,6 @@ class Maze:
                 self.grid[col][right_row] = "#"
             else:
                 self.grid[col][right_row] = "."
-
 
 # ------------------------------------------------- 
 # Test 

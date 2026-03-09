@@ -8,8 +8,8 @@ The goal is to automatically find a path from a **start position (S)** to a **go
 
 Three algorithms are implemented and compared:
 
-* **Depth-First Search (DFS)**
 * **Breadth-First Search (BFS)**
+* **Depth-First Search (DFS)**
 * **A* Search (A-Star)** using the **Manhattan heuristic**
 
 The project also includes a **random maze generator** that guarantees the existence of a valid path between the start and the goal.
