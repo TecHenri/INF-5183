@@ -1,0 +1,824 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1200</width>
+    <height>800</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1000</width>
+    <height>700</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>🔀 LABYRINTHE - Générateur &amp; Solveur</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">
+    QMainWindow {
+        background-color: #2b2b2b;
+        color: #ffffff;
+    }
+
+    QWidget {
+        background-color: #2b2b2b;
+        color: #ffffff;
+        font-family: 'Segoe UI', Arial, sans-serif;
+        font-size: 11pt;
+    }
+
+    QPushButton {
+        background-color: #0078d4;
+        border: none;
+        border-radius: 6px;
+        padding: 8px 16px;
+        font-weight: bold;
+        min-width: 80px;
+        min-height: 30px;
+    }
+
+    QPushButton:hover {
+        background-color: #106ebe;
+    }
+
+    QPushButton:pressed {
+        background-color: #005a9e;
+    }
+
+    QPushButton#btnGenerate {
+        background-color: #16a085;
+    }
+
+    QPushButton#btnGenerate:hover {
+        background-color: #138d75;
+    }
+
+    QPushButton#btnRun {
+        background-color: #e74c3c;
+    }
+
+    QPushButton#btnRun:hover {
+        background-color: #c0392b;
+    }
+
+    QSpinBox, QDoubleSpinBox {
+    	background-color: #404040;
+    	border: 2px solid #555555;
+    	border-radius: 4px;
+    	padding-right: 20px; 
+    	min-width: 60px;
+    	color: #ffffff;
+	}
+
+    QSpinBox::up-button, QSpinBox::down-button {
+    	width: 18px;
+    	background-color: #555555;
+    	border: none;
+	}
+
+	QSpinBox::up-button:hover, QSpinBox::down-button:hover {
+    	background-color: #0078d4;
+	}
+
+    QComboBox {
+        background-color: #404040;
+        border: 2px solid #555555;
+        border-radius: 4px;
+        padding: 5px;
+        min-width: 150px;
+        color: #ffffff;
+    }
+
+    QComboBox:focus {
+        border-color: #0078d4;
+    }
+
+    QComboBox::drop-down {
+        border: none;
+        width: 20px;
+    }
+
+    QCheckBox {
+        color: #ffffff;
+        spacing: 6px;
+    }
+
+    QCheckBox::indicator {
+        width: 16px;
+        height: 16px;
+        border-radius: 3px;
+        border: 2px solid #555555;
+        background-color: #404040;
+    }
+
+    QCheckBox::indicator:checked {
+        background-color: #f39c12;
+        border-color: #f39c12;
+    }
+
+    QCheckBox::indicator:hover {
+        border-color: #f39c12;
+    }
+
+    QTextEdit {
+        background-color: #1e1e1e;
+        border: 1px solid #555555;
+        border-radius: 4px;
+        padding: 10px;
+        font-family: 'Consolas', 'Monaco', monospace;
+        font-size: 10pt;
+        color: #ffffff;
+    }
+
+    QLabel {
+        color: #ffffff;
+        font-weight: 500;
+    }
+
+    QLabel#seedValueDisplay {
+        background-color: #1e1e1e;
+        border: 2px solid #555555;
+        border-radius: 4px;
+        padding: 4px 8px;
+        color: #f39c12;
+        font-family: 'Consolas', monospace;
+        font-weight: bold;
+    }
+
+    QLabel#seedValueDisplay:disabled {
+        color: #555555;
+        border-color: #3a3a3a;
+    }
+
+    QGroupBox {
+        font-weight: bold;
+        border: 2px solid #555555;
+        border-radius: 8px;
+        margin-top: 10px;
+        padding-top: 10px;
+    }
+
+    QGroupBox::title {
+        subcontrol-origin: margin;
+        left: 10px;
+        padding: 0 8px 0 8px;
+        color: #0078d4;
+    }
+
+    QProgressBar {
+        border: 1px solid #555555;
+        border-radius: 4px;
+        text-align: center;
+        background-color: #404040;
+        color: #ffffff;
+    }
+
+    QProgressBar::chunk {
+        background-color: #16a085;
+        border-radius: 3px;
+    }
+
+    QFrame#separatorLine {
+        color: #555555;
+        background-color: #555555;
+    }
+   </string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="mainHorizontalLayout">
+    <property name="spacing">
+     <number>15</number>
+    </property>
+    <property name="leftMargin">
+     <number>15</number>
+    </property>
+    <property name="topMargin">
+     <number>15</number>
+    </property>
+    <property name="rightMargin">
+     <number>15</number>
+    </property>
+    <property name="bottomMargin">
+     <number>15</number>
+    </property>
+    <item>
+     <widget class="QWidget" name="leftPanel" native="true">
+      <property name="maximumSize">
+       <size>
+        <width>300</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <layout class="QVBoxLayout" name="leftPanelLayout">
+       <property name="spacing">
+        <number>12</number>
+       </property>
+       <item>
+        <widget class="QGroupBox" name="generationGroup">
+         <property name="title">
+          <string>⚙️  Génération</string>
+         </property>
+         <layout class="QFormLayout" name="generationFormLayout">
+          <property name="horizontalSpacing">
+           <number>12</number>
+          </property>
+          <property name="verticalSpacing">
+           <number>10</number>
+          </property>
+          <property name="leftMargin">
+           <number>10</number>
+          </property>
+          <property name="rightMargin">
+           <number>10</number>
+          </property>
+          <property name="bottomMargin">
+           <number>12</number>
+          </property>
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelSize">
+            <property name="styleSheet">
+             <string notr="true">...</string>
+            </property>
+            <property name="text">
+             <string>Taille (n × n) :</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QSpinBox" name="spinBoxSize">
+            <property name="styleSheet">
+             <string notr="true">	QSpinBox::up-arrow {
+    	image: url(:/icons/up.png);
+	}
+
+	QSpinBox::down-arrow {
+    	image: url(:/icons/down.png);
+	}</string>
+            </property>
+            <property name="buttonSymbols">
+             <enum>QAbstractSpinBox::UpDownArrows</enum>
+            </property>
+            <property name="suffix">
+             <string> x </string>
+            </property>
+            <property name="minimum">
+             <number>2</number>
+            </property>
+            <property name="maximum">
+             <number>30</number>
+            </property>
+            <property name="value">
+             <number>16</number>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0" colspan="2">
+           <widget class="QFrame" name="separatorLine1">
+            <property name="styleSheet">
+             <string notr="true">background-color: #444444; max-height: 1px;</string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::HLine</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Sunken</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="labelFillRate">
+            <property name="toolTip">
+             <string>Taux de remplissage des murs du labyrinthe (en %)</string>
+            </property>
+            <property name="text">
+             <string>Fill Rate :</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <layout class="QHBoxLayout" name="fillRateLayout">
+            <item>
+             <widget class="QSpinBox" name="spinBoxFillRate">
+              <property name="toolTip">
+               <string>Taux de remplissage des murs (0% = vide, 100% = plein)</string>
+              </property>
+              <property name="styleSheet">
+               <string notr="true"/>
+              </property>
+              <property name="suffix">
+               <string> %</string>
+              </property>
+              <property name="minimum">
+               <number>0</number>
+              </property>
+              <property name="maximum">
+               <number>100</number>
+              </property>
+              <property name="singleStep">
+               <number>5</number>
+              </property>
+              <property name="value">
+               <number>50</number>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="3" column="0" colspan="2">
+           <widget class="QFrame" name="separatorLine2">
+            <property name="styleSheet">
+             <string notr="true">background-color: #444444; max-height: 1px;</string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::HLine</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Sunken</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QCheckBox" name="checkBoxSeed">
+            <property name="toolTip">
+             <string>Cochez pour fixer un seed et obtenir un labyrinthe reproductible</string>
+            </property>
+            <property name="text">
+             <string>Seed fixe :</string>
+            </property>
+            <property name="checked">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="QSpinBox" name="spinBoxSeed">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="toolTip">
+             <string>Valeur du seed (activé uniquement si la case est cochée)</string>
+            </property>
+            <property name="minimum">
+             <number>0</number>
+            </property>
+            <property name="maximum">
+             <number>999999</number>
+            </property>
+            <property name="value">
+             <number>42</number>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0" colspan="2">
+           <widget class="QLabel" name="seedStatusLabel">
+            <property name="styleSheet">
+             <string notr="true">
+              color: #777777;
+              font-size: 9pt;
+              font-style: italic;
+              padding: 3px;
+              border: 1px solid #3a3a3a;
+              border-radius: 4px;
+              background-color: #222222;
+             </string>
+            </property>
+            <property name="text">
+             <string>🎲 Seed : aléatoire</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="0" colspan="2">
+           <widget class="QPushButton" name="btnGenerate">
+            <property name="text">
+             <string>🎲  Générer le Labyrinthe</string>
+            </property>
+            <property name="shortcut">
+             <string>Ctrl+G</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="algorithmGroup">
+         <property name="title">
+          <string>🔍  Algorithme de Résolution</string>
+         </property>
+         <layout class="QVBoxLayout" name="algorithmLayout">
+          <property name="spacing">
+           <number>8</number>
+          </property>
+          <property name="leftMargin">
+           <number>10</number>
+          </property>
+          <property name="rightMargin">
+           <number>10</number>
+          </property>
+          <property name="bottomMargin">
+           <number>12</number>
+          </property>
+          <item>
+           <widget class="QComboBox" name="comboAlgo">
+            <item>
+             <property name="text">
+              <string>BFS — Largeur d'abord</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>DFS — Profondeur d'abord</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>A* — A-Star</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnRun">
+            <property name="text">
+             <string>🚀  Résoudre</string>
+            </property>
+            <property name="shortcut">
+             <string>Ctrl+R</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QProgressBar" name="progressBar">
+            <property name="visible">
+             <bool>false</bool>
+            </property>
+            <property name="value">
+             <number>0</number>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="statsGroup">
+         <property name="title">
+          <string>📊  Statistiques</string>
+         </property>
+         <layout class="QFormLayout" name="statsFormLayout">
+          <property name="horizontalSpacing">
+           <number>12</number>
+          </property>
+          <property name="verticalSpacing">
+           <number>8</number>
+          </property>
+          <property name="leftMargin">
+           <number>10</number>
+          </property>
+          <property name="rightMargin">
+           <number>10</number>
+          </property>
+          <property name="bottomMargin">
+           <number>12</number>
+          </property>
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelCells">
+            <property name="text">
+             <string>Cellules visitées :</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLabel" name="valueCells">
+            <property name="styleSheet">
+             <string notr="true">color: #16a085; font-weight: bold;</string>
+            </property>
+            <property name="text">
+             <string>0</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="labelPath">
+            <property name="text">
+             <string>Longueur du chemin :</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLabel" name="valuePath">
+            <property name="styleSheet">
+             <string notr="true">color: #e74c3c; font-weight: bold;</string>
+            </property>
+            <property name="text">
+             <string>0</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="labelTime">
+            <property name="text">
+             <string>Temps d'exécution :</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QLabel" name="valueTime">
+            <property name="styleSheet">
+             <string notr="true">color: #f39c12; font-weight: bold;</string>
+            </property>
+            <property name="text">
+             <string>0.00 s</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="leftVerticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QWidget" name="centerPanel" native="true">
+      <layout class="QVBoxLayout" name="centerPanelLayout">
+       <item>
+        <widget class="QLabel" name="titleLabel">
+         <property name="styleSheet">
+          <string notr="true">
+           font-size: 16pt;
+           font-weight: bold;
+           color: #0078d4;
+           margin-bottom: 10px;
+          </string>
+         </property>
+         <property name="text">
+          <string>🔀  Visualisation du Labyrinthe</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QScrollArea" name="scrollArea">
+         <property name="styleSheet">
+          <string notr="true">
+           QScrollArea {
+               border: 2px solid #555555;
+               border-radius: 8px;
+               background-color: #1e1e1e;
+           }
+          </string>
+         </property>
+         <property name="widgetResizable">
+          <bool>true</bool>
+         </property>
+         <widget class="QWidget" name="scrollAreaWidgetContents">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>831</width>
+            <height>447</height>
+           </rect>
+          </property>
+          <layout class="QGridLayout" name="gridLayout">
+           <property name="leftMargin">
+            <number>10</number>
+           </property>
+           <property name="topMargin">
+            <number>10</number>
+           </property>
+           <property name="rightMargin">
+            <number>10</number>
+           </property>
+           <property name="bottomMargin">
+            <number>10</number>
+           </property>
+           <property name="spacing">
+            <number>1</number>
+           </property>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="logGroup">
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>200</height>
+          </size>
+         </property>
+         <property name="title">
+          <string>📝  Journal d'Exécution</string>
+         </property>
+         <layout class="QVBoxLayout" name="logLayout">
+          <item>
+           <widget class="QTextEdit" name="textLog">
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+            <property name="html">
+             <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Consolas,Monaco,monospace'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#16a085;&quot;&gt;[INFO]&lt;/span&gt; Interface initialisée. Prêt à générer un labyrinthe...&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="placeholderText">
+             <string>Les logs et étapes d'exécution apparaîtront ici...</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1200</width>
+     <height>36</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">
+     QMenuBar {
+         background-color: #404040;
+         color: white;
+         border-bottom: 1px solid #555555;
+     }
+     QMenuBar::item {
+         padding: 5px 15px;
+         background-color: transparent;
+     }
+     QMenuBar::item:selected {
+         background-color: #0078d4;
+     }
+     QMenu {
+         background-color: #404040;
+         border: 1px solid #555555;
+     }
+     QMenu::item {
+         padding: 8px 25px;
+     }
+     QMenu::item:selected {
+         background-color: #0078d4;
+     }
+     QMenu::separator {
+         height: 1px;
+         background-color: #555555;
+         margin: 4px 10px;
+     }
+    </string>
+   </property>
+   <widget class="QMenu" name="menuFichier">
+    <property name="title">
+     <string>📁  Fichier</string>
+    </property>
+    <addaction name="actionNouveau"/>
+    <addaction name="actionSauvegarder"/>
+    <addaction name="separator"/>
+    <addaction name="actionImport_un_cas"/>
+    <addaction name="actionSupprimer_un_cas"/>
+   </widget>
+   <widget class="QMenu" name="menuEditer">
+    <property name="title">
+     <string>⚙️  Algorithmes</string>
+    </property>
+    <addaction name="actionAlgorithm_de_recherches"/>
+    <addaction name="actionImporter_un_script"/>
+    <addaction name="separator"/>
+    <addaction name="actionRecherche_de_cas"/>
+   </widget>
+   <widget class="QMenu" name="menuAffichage">
+    <property name="title">
+     <string>👁️  Affichage</string>
+    </property>
+    <addaction name="actionMode_sombre"/>
+    <addaction name="actionZoom"/>
+   </widget>
+   <widget class="QMenu" name="menuInfo">
+    <property name="title">
+     <string>ℹ️  Aide</string>
+    </property>
+    <addaction name="actionRaccourcis"/>
+    <addaction name="actionA_propos"/>
+   </widget>
+   <addaction name="menuFichier"/>
+   <addaction name="menuEditer"/>
+   <addaction name="menuAffichage"/>
+   <addaction name="menuInfo"/>
+  </widget>
+  <action name="actionNouveau">
+   <property name="text">
+    <string>🆕  Nouveau Labyrinthe</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
+  </action>
+  <action name="actionSauvegarder">
+   <property name="text">
+    <string>💾  Sauvegarder</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionImport_un_cas">
+   <property name="text">
+    <string>📂  Importer un cas...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="actionAlgorithm_de_recherches">
+   <property name="text">
+    <string>🔍  Configurer Algorithmes</string>
+   </property>
+  </action>
+  <action name="actionImporter_un_script">
+   <property name="text">
+    <string>📜  Importer Script Personnalisé</string>
+   </property>
+  </action>
+  <action name="actionSupprimer_un_cas">
+   <property name="text">
+    <string>🗑️  Supprimer un cas</string>
+   </property>
+   <property name="shortcut">
+    <string>Del</string>
+   </property>
+  </action>
+  <action name="actionRecherche_de_cas">
+   <property name="text">
+    <string>🔎  Recherche de cas</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+F</string>
+   </property>
+  </action>
+  <action name="actionMode_sombre">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>🌙  Basculer Mode Sombre</string>
+   </property>
+  </action>
+  <action name="actionZoom">
+   <property name="text">
+    <string>🔍  Contrôles Zoom</string>
+   </property>
+  </action>
+  <action name="actionRaccourcis">
+   <property name="text">
+    <string>⌨️  Raccourcis Clavier</string>
+   </property>
+   <property name="shortcut">
+    <string>F1</string>
+   </property>
+  </action>
+  <action name="actionA_propos">
+   <property name="text">
+    <string>ℹ️  À Propos</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

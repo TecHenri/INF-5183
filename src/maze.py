@@ -289,19 +289,23 @@ class Maze:
         goal = self.get_goal()
 
         self.grid[start[0]][start[1]] = "S"
-        '''
-        # garantir que la case goal est accessible
-        if self.grid[goal[0]][goal[1]] == "#":
-            self.grid[goal[0]][goal[1]] = "."
-
-        if self.grid[goal[0] - 1][goal[1]] == "#":
-            self.grid[goal[0] - 1][goal[1]] = "."
-        '''
-
+        
         self.grid[goal[0]][goal[1]] = "G"
 
         # Surppresion de murs doubles 
         self._fix_last_inner_row()
+
+         # garantir que la case goal est accessible
+
+        if self.grid[goal[0] - 1][goal[1]] == "#":
+            self.grid[goal[0] - 1][goal[1]] = "."
+
+        if self.grid[goal[0]][goal[1]-1] == "#":
+            self.grid[goal[0] ][goal[1]-1] = "."
+        
+
+
+        
 
         # ajustement de la densité du labyrinthe
         if self.fill_rate > 0.5:
@@ -349,11 +353,11 @@ class Maze:
         bottom_row = self.height - 2
         right_row = self.width - 2
 
-        for col in range(1, self.width - 1):
+        for col in range(1, self.width - 2):
 
             # ne jamais modifier la case goal
-            if self.grid[bottom_row][col] == "G":
-                continue
+            #if self.grid[bottom_row][col] == "G":
+            #    continue
 
             # génération aléatoire basée sur fill_rate
             if random.random() < self.fill_rate:
@@ -361,11 +365,11 @@ class Maze:
             else:
                 self.grid[bottom_row][col] = "."
         
-        for col in range(1, self.width - 1):
+        for col in range(1, self.width - 2):
 
             # ne jamais modifier la case goal
-            if self.grid[col][right_row] == "G":
-                continue
+            #if self.grid[col][right_row] == "G":
+            #    continue
 
             # génération aléatoire basée sur fill_rate
             if random.random() < self.fill_rate:

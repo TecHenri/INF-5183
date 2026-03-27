@@ -55,7 +55,7 @@ def run_algorithm(maze: Maze, name: str, algo_func, display_func, graph_func) ->
 
     path, explored, execution_time = algo_func(maze)
 
-    display_func(maze, path, explored)
+    #display_func(maze, path, explored)
 
     print("\nChemin trouvé :")
     print(path)
@@ -71,11 +71,8 @@ def run_algorithm(maze: Maze, name: str, algo_func, display_func, graph_func) ->
     else:
         print("Visualisation ignorée.")
 
-    
+
 def main() -> None:
-    """
-    Main function to run the program.
-    """
     maze = generate_maze()
 
     display_maze_console(maze)
@@ -88,7 +85,6 @@ def main() -> None:
 
     # A*
     run_algorithm(maze, "A*", astar_search, display_solution_astar, plot_maze_exploration_astar)
-
-
+   
 if __name__ == "__main__":
     main()

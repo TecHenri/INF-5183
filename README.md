@@ -223,21 +223,28 @@ Move into the project directory:
 cd INF-5183
 ```
 
-Install dependencies (if needed):
+# Usage CLI Mode (No GUI Required)
+
+You can run the project directly from a Windows terminal using:
+
+```
+main.bat
+```
+
+or 
+Install dependencies :
 
 ```
 pip install -r requirements.txt
 ```
 
----
-
-# Usage
 
 Run the program with:
 
 ```
 python main.py
 ```
+
 
 The program will:
 
@@ -257,6 +264,66 @@ The program will:
 No external libraries are required.
 
 ---
+
+
+## Interface graphique (IHM)
+
+L'interface a été développée avec **PySide6 (Qt 6)** en suivant le model **MVC** :
+
+![Maze Example](images/ihmmaze.png)
+
+
+### Architecture MVC
+
+```
+main.py
+  └── MainWindow          (widgets/main_window.py)
+        ├── Ui_MainWindow (ui/ui_main_window.py)   — Vue Qt Designer
+        ├── GridWidget    (widgets/grid_widget.py)  — Rendu labyrinthe
+        └── MazeController(widgets/controller.py)   — Logique & connexions
+```
+
+| Couche     | Fichier(s)                          | Rôle                                              |
+|------------|-------------------------------------|---------------------------------------------------|
+| Model      | `src/maze.py`, `src/bfs.py` …       | Génération et algorithmes — aucune dépendance Qt  |
+| View       | `ui/ui_main_window.py`, `grid_widget.py` | Affichage — aucune logique métier           |
+| Controller | `widgets/controller.py`             | Orchestre Model ↔ View, connecte les signaux Qt   |
+
+### Fonctionnalités
+
+| Fonctionnalité                        | Description                                                  |
+|---------------------------------------|--------------------------------------------------------------|
+| **Génération**                        | Taille N×N (2–30), taux de murs (0–100 %), seed fixe ou aléatoire |
+| **Choix d'algorithme**                | BFS, DFS, A\* via liste déroulante                           |
+| **Visualisation en temps réel**       | Animation pas-à-pas des cellules explorées                   |
+| **Affichage du chemin**               | Chemin final marqué en orange (★) après résolution           |
+| **Statistiques**                      | Cellules visitées, longueur du chemin, temps d'exécution     |
+| **Journal d'exécution**               | Log coloré de toutes les actions (génération, résolution)    |
+| **Barre de progression**              | Suivi visuel de l'avancement de l'animation                  |
+| **Sauvegarde**                        | Export du labyrinthe en `.txt` via le menu Fichier           |
+
+### Palette de couleurs
+
+| Couleur   | Signification         |
+|-----------|-----------------------|
+| Vert      | Départ (S)            |
+| Rouge     | Arrivée (G)           |
+| Bleu foncé| Cellule visitée       |
+| Orange    | Chemin final (★)      |
+| Bleu-gris | Mur                   |
+| Gris foncé| Cellule libre         |
+
+
+
+### GUI Mode (Optional)
+
+To launch the graphical interface:
+
+```
+app.bat
+```
+This will automatically install PySide6 if it is not already installed
+
 
 # Educational Purpose
 
