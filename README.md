@@ -62,20 +62,32 @@ Diagonal moves are **not allowed**.
 
 📁 INF-5183
   ├─╴📁 src
-  |    └─╴📄 astar.py
-  |    └─╴📄 bfs.py
-  |    └─╴📄 dfs.py
-  |    └─╴📄 maze.py 
+  |    ├─╴📄 astar.py
+  |    ├─╴📄 bfs.py
+  |    ├─╴📄 dfs.py
+  |    ├─╴📄 maze.py 
   ├─╴📁 test
-  |    └─╴📄 test_astar.py
-  |    └─╴📄 test_bfs.py
-  |    └─╴📄 test_dfs.py
+  |    ├─╴📄 test_astar.py
+  |    ├─╴📄 test_bfs.py
+  |    ├─╴📄 test_dfs.py
   |    └─╴📄 test_maze.py
-  └─╴📄 main.py
-  └─╴📄 launch.bat
-  └─╴📄 README.md
-  └─╴📄 requirements.txt
-  └─╴📄 Devoir_I.pdf
+  ├─╴📁 gui
+  |    └─╴📄 test_astar.py
+  ├─╴📁 ui
+  |    └─╴📄 ui_main_window.py
+  ├─╴📁 widgets
+  |    ├─╴📄 controller.py
+  |    ├─╴📄 grid_widget.py
+  |    └─╴📄 main_window.py
+  ├─╴📁 venv
+  ├─╴📁 images
+  ├─╴📄 main.py
+  ├─╴📄 main.bat
+  ├─╴📄 app.py
+  ├─╴📄 app.bat
+  ├─╴📄 README.md
+  ├─╴📄 requirements.txt
+  ├─╴📄 Devoir_I.pdf
   └─╴📄 .gitignore
 
 ```
